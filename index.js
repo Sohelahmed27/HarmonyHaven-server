@@ -29,6 +29,11 @@ async function run() {
     const classCollection = client.db("havenDb").collection("classes")
     const instructorCollection = client.db("havenDb").collection("instructors")
 
+    app.get("/classes", async (req, res) => {
+      const result = await classCollection.find().toArray()
+      res.send(result)
+    })
+
     // await client.connect();
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
