@@ -28,7 +28,15 @@ async function run() {
     // Connect the client to the server	(optional starting in v4.7)
     const classCollection = client.db("havenDb").collection("classes")
     const instructorCollection = client.db("havenDb").collection("instructors")
-    const ordersCollection = client.db("havenDb").collection("orders")
+    const cartCollection = client.db("havenDb").collection("carts")
+
+
+    //api post cart 
+    app.post('/carts', async(req, res) => {
+      const item = req.body;
+      const result = await cartCollection.insertOne(item);
+      res.send(result);
+    })
 
     //api with limit
     app.get("/classes", async (req, res) => {
