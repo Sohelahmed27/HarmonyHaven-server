@@ -28,6 +28,7 @@ async function run() {
     // Connect the client to the server	(optional starting in v4.7)
     const classCollection = client.db("havenDb").collection("classes")
     const instructorCollection = client.db("havenDb").collection("instructors")
+    const ordersCollection = client.db("havenDb").collection("orders")
 
     //api with limit
     app.get("/classes", async (req, res) => {
@@ -36,11 +37,12 @@ async function run() {
     })
 
     
-    //API with all instructor
+    //API with all instructor and classes
     app.get("/allClasses", async (req, res) => {
       const result = await classCollection.find().toArray()
       res.send(result)
     })
+   
 
     // await client.connect();
     // Send a ping to confirm a successful connection
