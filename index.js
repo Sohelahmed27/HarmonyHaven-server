@@ -30,7 +30,7 @@ async function run() {
     const instructorCollection = client.db("havenDb").collection("instructors")
 
     app.get("/classes", async (req, res) => {
-      const result = await classCollection.find().toArray()
+      const result = await classCollection.find().sort({ numberOfStudents: -1 }).limit(6).toArray()
       res.send(result)
     })
 
